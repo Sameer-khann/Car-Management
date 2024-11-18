@@ -7,6 +7,8 @@ import Home from "./pages/Home";
 import CarDetails from "./pages/CarDetails";
 import { useDispatch } from "react-redux";
 import { performUserDetails } from "./redux/slices/authSlice"; // Make sure you import performUserDetails
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"; // Import the CSS file
 
 const App = () => {
   const dispatch = useDispatch(); // Fixed 'const' declaration
@@ -18,6 +20,7 @@ const App = () => {
   return (
     <Router>
       <Navbar />
+      <ToastContainer />
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />

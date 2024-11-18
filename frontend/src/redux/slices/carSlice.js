@@ -4,7 +4,7 @@ axios.defaults.withCredentials = true;
 
 const initialState = {
   cars: [],
-  car: null,
+  car: null,  
   loading: false,
   error: null,
 };
@@ -29,13 +29,17 @@ export const addCar = createAsyncThunk("cars/addCar", async (carData) => {
 
 // Update a car
 export const updateCar = createAsyncThunk("cars/updateCar", async ({ id, data }) => {
-  const response = await axios.put(`http://localhost:5000/api/cars/${id}`, data);
-  return response.data;
+  const response = await axios.put(`http://localhost:5000/api/cars/${id}`, data, {
+    withCredentials: true,
+  });
+  console.log("response -> data: ", response.data.car)
+  return response.data.car; // Return only the updated car
 });
 
 // Delete a car
 export const deleteCar = createAsyncThunk("cars/deleteCar", async (id) => {
   await axios.delete(`http://localhost:5000/api/cars/${id}`);
+  console.log("ID from delete request : ", id)
   return id;
 });
 

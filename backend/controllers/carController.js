@@ -83,6 +83,7 @@ export const updateCar = async (req, res) => {
 
         // Find the car to update
         const car = await Car.findOne({ _id: req.params.id, userId: req.userId });
+        // console.log("ID: ", req.params.id,"UserID: ", req.userId);
         if (!car) {
             return res.status(404).json({ message: "Car not found" });
         }
@@ -106,6 +107,7 @@ export const updateCar = async (req, res) => {
 
         await car.save();
         res.status(200).json({ message: "Car updated successfully", car });
+        console.log("Update ka backend mast chal rha hai");
     } catch (error) {
         res.status(500).json({ message: "Internal server error", error: error.message });
     }
